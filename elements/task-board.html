@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html"/>
 <link rel="import" href="task-list.html"/>
+<link rel="import" href="task-appender.html"/>
 <dom-module id="task-board">
   <style>
     h1 {
@@ -30,6 +31,7 @@
     <!-- Import all the pre-populated sample tasks via two way data binding -->
     <sprint-tasks tasks="{{tasks}}"></sprint-tasks>
     <h2>Add a new task to the task board</h2>
+    <task-appender tasks="{{tasks}}"></task-appender>
     <h2>Pending tasks</h2>
     <task-list status='pending' tasks="{{tasks}}"></task-list>
     <h2>Completed tasks</h2>

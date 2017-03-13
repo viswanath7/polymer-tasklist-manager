@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<link rel="import" href="../bower_components/paper-input/paper-input.html"/>
+<link rel="import" href="../bower_components/paper-input/paper-input-container.html"/>
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html"/>
+<link rel="import" href="../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="sprint-tasks.html"/>
+
+<dom-module id="task-appender">
+  <style>
+    paper-icon-button {
+      color: darkred;
+    }
+    paper-icon-button:hover {
+      color: darkorange;
+    }
+  </style>
+  <template>
+    <div>
+      <paper-input-container>
+        <paper-icon-button prefix icon="add-circle-outline" on-tap="_appendTask"></paper-icon-button>
+        <label>New task</label>
+        <input is="iron-input" bind-value="{{task}}">
+      </paper-input-container>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'task-appender',
+      _appendTask: function () {
+        if(this.task) {
+          console.log("Appending task: '"+this.task+"'.");
+          this.push('tasks', {
+            name: this.task,
+            completed: false
+          })
+        }
+        this.task=null;
+      }
+    })
+  </script>
+</dom-module>
