@@ -1,0 +1,86 @@
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html"/>
+<link rel="import" href="../bower_components/paper-material/paper-material.html"/>
+<link rel="import" href="sprint-tasks.html"/>
+
+<dom-module id="task-list">
+  <style>
+    paper-material {
+      padding-top: 10px;
+      padding-right: 0px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+    }
+    .task-content {
+      font-size: 14px;
+      line-height: 24px;
+      color: #888888;
+      font-family: fantasy;
+      margin: 0;
+      display: block;
+    }
+  </style>
+  <template>
+    <!--
+      Template repeater:
+      Binds to an array and creates an instance of template's contents for each item in an array.
+      For each template content instance, a new data binding scope is created which includes 'item' & its index.
+      Template repeater extends the built-in <template> element and called 'type-extension custom element'.
+     -->
+
+    <div>
+      <template is="dom-repeat" items="{{tasks}}" filter="{{withStatus(status)}}" observe="completed">
+        <!--
+          To filter the displayed items of our list, we specify 'filter' property of the dom-repeat element.
+          'filter' property of dom-repeat element specifies a callback function, that takes a single argument
+          'the item' and returns 'true' to display it or 'false' to omit it.
+
+          The value of 'filter' property can be either a function object,
+          or a string identifying a function defined on the host element.
+
+          The filtering function only runs when an "observable" change is made to the iterated array or
+          when the filter function itself is changed.
+
+          To re-run the filtering function when certain sub-field(s) of items change,
+          we set the 'observe' property of dom-repeat element,
+          to a space-separated list of item sub-fields that should cause the list to be re-filtered.
+        -->
+        <ul>
+          <paper-material elevation="1">
+            <paper-checkbox checked="{{item.completed}}">
+              <div class="task-content">{{item.name}}</div>
+            </paper-checkbox>
+          </paper-material>
+
+        </ul>
+      </template>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      is: 'task-list',
+      status: {
+        type: String,
+        value: 'all'
+      },
+      withStatus: function (status) {
+        return function (task) {
+          if (status === 'completed') {
+            return task.completed;
+          }
+          else if (status === 'pending') {
+            return !task.completed;
+          } else if( status === 'all') {
+            return true;
+          }
+          else {
+            console.log('Unsupported status: '+status);
+            return false;
+          }
+        }
+      }
+    })
+  </script>
+
+</dom-module>

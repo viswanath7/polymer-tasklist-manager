@@ -1,0 +1,22 @@
+{
+  "name": "polymer-tasklist-manager",
+  "authors": [
+    "Viswanath J"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.8.0",
+    "iron-elements": "^1.0.10",
+    "paper-elements": "^1.0.7"
+  }
+}

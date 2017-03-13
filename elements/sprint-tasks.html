@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<dom-module id="sprint-tasks">
+  <script>
+    Polymer({
+      is: "sprint-tasks",
+      properties: {
+        tasks: {
+          notify: true,
+          value: function () {
+            return [
+              {
+                name: "Refine sprint backlog items",
+                completed: true
+              },
+              {
+                name: "Plan stories for sprint",
+                completed: true
+              },
+              {
+                name: "Complete all planned stories",
+                completed: false
+              },
+              {
+                name: "Deliver a demonstration of MVP to stakeholders",
+                completed: false
+              },
+              {
+                name: "Do retrospective",
+                completed: false
+              },
+              {
+                name: "Close the sprint",
+                completed: false
+              }
+            ]
+          }
+        }
+      }
+    })
+  </script>
+</dom-module>

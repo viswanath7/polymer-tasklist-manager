@@ -1,0 +1,43 @@
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<link rel="import" href="task-list.html"/>
+<dom-module id="task-board">
+  <style>
+    h1 {
+      margin: 0;
+      font-size: 44px;
+      color: #34b091;
+      font-family: fantasy;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+      line-height: 1.1;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    h2 {
+      font-size: 18px;
+      line-height: 24px;
+      color: #34b091;
+      text-transform: uppercase;
+      font-family: fantasy;
+      padding-top: 10px;
+      padding-bottom: 5px;
+      letter-spacing: 1px;
+    }
+  </style>
+  <template>
+    <h1>Task board</h1>
+    <!-- Import all the pre-populated sample tasks via two way data binding -->
+    <sprint-tasks tasks="{{tasks}}"></sprint-tasks>
+    <h2>Add a new task to the task board</h2>
+    <h2>Pending tasks</h2>
+    <task-list status='pending' tasks="{{tasks}}"></task-list>
+    <h2>Completed tasks</h2>
+    <task-list status='completed' tasks="{{tasks}}"></task-list>
+  </template>
+  <script>
+    Polymer({
+      is: 'task-board'
+    })
+  </script>
+</dom-module>
