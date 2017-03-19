@@ -1,6 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer.html"/>
 <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html"/>
 <link rel="import" href="../bower_components/paper-material/paper-material.html"/>
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html"/>
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="sprint-tasks.html"/>
 
 <dom-module id="task-list">
@@ -18,6 +20,11 @@
       font-family: fantasy;
       margin: 0;
       display: block;
+    }
+    .delete-button {
+      color: darkred;
+      float: right;
+      bottom: 10px;
     }
   </style>
   <template>
@@ -50,8 +57,8 @@
             <paper-checkbox checked="{{item.completed}}">
               <div class="task-content">{{item.name}}</div>
             </paper-checkbox>
+            <paper-icon-button icon="delete" on-tap="_deleteTask" class="delete-button"></paper-icon-button>
           </paper-material>
-
         </ul>
       </template>
     </div>
@@ -79,6 +86,11 @@
             return false;
           }
         }
+      },
+      _deleteTask: function(e) {
+        console.log('Deleting task: '+ e.model.item.name);
+        var indexOfTaskToRemove = this.tasks.indexOf(e.model.item);
+        this.splice('tasks',indexOfTaskToRemove, 1);
       }
     })
   </script>
